@@ -1,15 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4ea8d33c-92ad-49f2-ab32-a2df2ac60fea" name="Default Changelist" comment="" />
+    <list default="true" id="4ea8d33c-92ad-49f2-ab32-a2df2ac60fea" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChessRules.py" beforeDir="false" afterPath="$PROJECT_DIR$/ChessRules.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/css/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/images/black-bishop.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/images/black-king.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/images/black-knight.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/images/black-pawn.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/images/black-queen.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/images/black-rook.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/images/board.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/images/white-bishop.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/images/white-king.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/images/white-knight.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/images/white-pawn.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/images/white-queen.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/images/white-rook.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/js/script.js" beforeDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1kLAyUXMnVomSDgsZCR570Rhku4" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
@@ -75,5 +101,16 @@
       <updated>1605469752228</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

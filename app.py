@@ -5,18 +5,19 @@ from flask_cors import CORS
 import random
 from ChessRules import ChessGame, Piece, King, Queen, Rook, Bishop, Knight, Pawn, format_to_nums, format_to_let
 
-app = Flask(__name__, static_url_path="/tmp", static_folder="tmp")
+app = Flask(__name__, static_url_path="/static", static_folder="static")
 CORS(app)
 
 game = ChessGame()
 
+
 @app.route('/', methods=['GET'])
 def output():
-
     piece_list = game.get_piece_list()
     json_piece_list = []
     for piece in piece_list:
-        json_piece_list.append([format_to_let(piece.get_rank(), piece.get_file()), piece.get_callsign(), piece.get_color()])
+        json_piece_list.append(
+            [format_to_let(piece.get_rank(), piece.get_file()), piece.get_callsign(), piece.get_color()])
 
     return render_template('index.html',
                            piece_list=json_piece_list)
@@ -34,15 +35,22 @@ def worker():
     for piece in piece_list:
         json_piece_list.append(
             [format_to_let(piece.get_rank(), piece.get_file()), piece.get_callsign(), piece.get_color()])
-    game_data = [json_piece_list, game.get_game_state(), [game.is_in_check("white"), game.is_in_check("black")]]
+    game_data = [
+        json_piece_list,
+        game.get_game_state(),
+        [game.is_in_check("white"), game.is_in_check("black")],
+        legal_move
+    ]
     response = jsonify(game_data)
     response.headers.add('Access-Control-Allow-Origin', '*')
 
     return response
 
+
 @app.route('/', methods=['PUT'])
 def new_game():
-    game = ChessGame()
+    # reset game
+    game.reset()
     piece_list = game.get_piece_list()
     json_piece_list = []
     for piece in piece_list:

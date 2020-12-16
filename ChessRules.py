@@ -23,9 +23,10 @@ class ChessGame:
             ["-", "-", "-", "-", "-", "-", "-", "-"],  # 5
             ["-", "-", "-", "-", "-", "-", "-", "-"],  # 6
             ["-", "-", "-", "-", "-", "-", "-", "-"],  # 7
-            ["-", "-", "-", "-", "-", "-", "-", "-"]  # 8
+            ["-", "-", "-", "-", "-", "-", "-", "-"]   # 8
             # a    b    c    d    e    f    g    h  
         ]
+        # init pieces in starting position
         white_pawn_a = Pawn(6, 0, "white")
         white_pawn_b = Pawn(6, 1, "white")
         white_pawn_c = Pawn(6, 2, "white")
@@ -59,6 +60,8 @@ class ChessGame:
         black_bishop2 = Bishop(0, 5, "black")
         black_queen = Queen(0, 3, "black")
         black_king = King(0, 4, "black")
+
+        # add pieces to master piece list
         self._piece_list = [white_pawn_a, white_pawn_b, white_pawn_c, white_pawn_d,
                             white_pawn_e, white_pawn_f, white_pawn_g, white_pawn_h,
                             white_rook1, white_rook2,
@@ -71,12 +74,16 @@ class ChessGame:
                             black_knight1, black_knight2,
                             black_bishop1, black_bishop2,
                             black_queen, black_king]
+        # init captured piece list
         self._captured_list = []
         self.update_board()
         self.update_move_sets()
 
-        for move in self.moves_made:
-            self.make_move(move[0], move[1])
+        # for move in self.moves_made:
+        #     self.make_move(move[0], move[1])
+
+    def reset(self):
+        self.__init__()
 
     def get_board(self):
         """

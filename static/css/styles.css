@@ -1,5 +1,11 @@
 .page-container {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.chess-board-container {
+    display: flex;
     justify-content: center;
 }
 
@@ -14,9 +20,9 @@
 
 .chess-board td {
     border: 1px solid;
-    width: 6em;
-    height: 6em;
-    background-size: 6em;
+    width: 4em;
+    height: 4em;
+    background-size: 4em;
 }
 
 .chess-board .light {
@@ -34,4 +40,13 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+.reset-button {
+    width: 8em;
+    margin: 0 auto;
+}
+
+* {
+    font-family: Roboto;
 }

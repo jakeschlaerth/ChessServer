@@ -1,10 +1,13 @@
 <html>
 
 <head>
-    <link href="{{ url_for('static', filename='css/styles.css') }}"
+    <link href="/static/css/styles.css"
         rel="stylesheet">
     <title>Chess</title>
     <meta charset="UTF-8">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -114,12 +117,13 @@
                 </tbody>
             </table>
         </div>
+        <button class="reset-button">New Game</button>
     </div>
-    <button class="reset-button">New Game</button>
+    
 </body>
 <script>
     init_piece_list = {{ piece_list | safe }};
 </script>
-<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+<script src="/static/js/script.js"></script>
 
 </html>
