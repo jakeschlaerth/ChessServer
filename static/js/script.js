@@ -61,14 +61,7 @@ const mouse_up = (e) => {
         if (req.readyState === 4) {
             if (req.status === 200) {
                 // this is where the magic happens
-                // game_data = [
-                //      piece_list, 
-                //      game_state, 
-                //      [is_check(white), is_in_check(black)], 
-                //      legal_move
-                //      ]
                 game_data_array = JSON.parse(req.responseText);
-                // console.log(game_data_array);
                 game_data = {
                     piece_list: game_data_array[0],
                     game_state: game_data_array[1],
@@ -127,7 +120,6 @@ const new_game = (e) => {
             if (req.status === 200) {
                 // this is where the magic happens
                 game_data = JSON.parse(req.responseText);
-                console.log(game_data);
                 render_board(game_data[0]);
             } else {
                 console.error(req.statusText);

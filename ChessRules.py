@@ -288,12 +288,13 @@ class ChessGame:
             # queen side
             if coord == "c8":
                 for piece in self.get_piece_list():
-                    if "d8" in piece.get_move_set():
-                        return False
-                    if "c8" in piece.get_move_set():
-                        return False
-                    if "f8" in piece.get_move_set():
-                        return False
+                    if piece.get_color() == "white":
+                        if "d8" in piece.get_move_set():
+                            return False
+                        if "c8" in piece.get_move_set():
+                            return False
+                        if "b8" in piece.get_move_set():
+                            return False
                 return True
 
     def test_move(self, from_str, to_str):
@@ -411,8 +412,10 @@ class ChessGame:
         piece_to_move.set_rank(to_rank)
         piece_to_move.set_file(to_file)
 
-        # if the moved piece is a pawn, check for promotion
+        # if the moved piece is a pawn, check for promotion and double move
         if piece_to_move.get_callsign() == "P":
+            if piece_to_move.get_color() == "black" and piece_to_move.get_rank == 4:
+                piece_to_move._double_moved = True
             piece_to_move.promotion(self.get_piece_list())
 
         self.set_old_board_coord(from_rank, from_file)
@@ -1095,7 +1098,16 @@ class Pawn(Piece):
         super().__init__(rank, file, color)
         self._callsign = "P"
         self._promote_to = None
+        self._double_moved = False
+        self.en_passant = False
         self._strength = 10
+
+    def get_double_moved(self):
+        """
+        get if the last move was a double move
+        :return: self._double_moved
+        """
+        return self._double_moved
 
     def set_promote_to(self, promote_to):
         """
@@ -1134,11 +1146,12 @@ class Pawn(Piece):
         except IndexError:
             pass
 
-    def pawn_cap_logic(self, rank_delta, file_delta, board):
+    def pawn_cap_logic(self, rank_delta, file_delta, special, board):
         """
         adds capture moves to a pawn's move set
         :param rank_delta: change in rank
         :param file_delta: change in file
+        :param special: denotes en_passant
         :param board: game board
         :return: None
         """
@@ -1153,7 +1166,12 @@ class Pawn(Piece):
             if potential_space != "-":
                 # if potential space is occupied by same color piece, this move is not possible
                 if potential_space.get_color() != self.get_color():
-                    # if potential space contains enemy, this is a possible capture
+                    if special == "en_passant":
+                        # if this is an en passant potential move , we must check if the piece is a pawn
+                        if potential_space.get_callsign() == "P":
+                            # if it is an enemy pawn, we must check if the last move was a double move
+                            if potential_space.get_double_moved():
+                                self.get_move_set().add(move)
                     self.get_move_set().add(move)
                 return
             return
@@ -1177,9 +1195,13 @@ class Pawn(Piece):
             # forward 1
             self.pawn_logic(-1, 0, board)
             # capture left
-            self.pawn_cap_logic(-1, -1, board)
+            self.pawn_cap_logic(-1, -1, None, board)
             # capture right
-            self.pawn_cap_logic(-1, 1, board)
+            self.pawn_cap_logic(-1, 1,  None, board)
+            # en passant left
+            self.pawn_cap_logic(0, -1, "en_passant", board)
+            # en passant right
+            self.pawn_cap_logic(0, 1, "en_passant", board)
 
         # black
         if self.get_color() == "black":
@@ -1189,9 +1211,9 @@ class Pawn(Piece):
             # forward 1
             self.pawn_logic(1, 0, board)
             # capture left
-            self.pawn_cap_logic(1, -1, board)
+            self.pawn_cap_logic(1, -1, "en_passant", board)
             # capture right
-            self.pawn_cap_logic(1, 1, board)
+            self.pawn_cap_logic(1, 1, "en_passant", board)
 
         # remove negative values by set comp
         self.direct_set_move_set({i for i in self.get_move_set() if i[0] >= 0 and i[1] >= 0})
