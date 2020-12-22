@@ -7,7 +7,7 @@ from ChessRules import ChessGame, Piece, King, Queen, Rook, Bishop, Knight, Pawn
 from sunfish import *
 
 app = Flask(__name__, static_url_path="/static", static_folder="static")
-CORS(app)
+CORS(app, resources={r"/": {"origins": "http://localhost:5000"}})
 
 game = ChessGame()
 
@@ -74,7 +74,6 @@ def output():
 
 @app.route('/', methods=['POST'])
 def worker():
-    print("in post")
     square_from = request.get_json()["square_from"]
     square_to = request.get_json()["square_to"]
     legal_move = game.make_move(square_from, square_to)
@@ -113,4 +112,4 @@ def new_game():
 
 if __name__ == '__main__':
     # run!
-    app.run()
+    app.run(debug=True, host='0.0.0.0')

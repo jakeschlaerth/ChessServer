@@ -1199,9 +1199,9 @@ class Pawn(Piece):
             # capture right
             self.pawn_cap_logic(-1, 1,  None, board)
             # en passant left
-            self.pawn_cap_logic(0, -1, "en_passant", board)
+            # self.pawn_cap_logic(0, -1, "en_passant", board)
             # en passant right
-            self.pawn_cap_logic(0, 1, "en_passant", board)
+            # self.pawn_cap_logic(0, 1, "en_passant", board)
 
         # black
         if self.get_color() == "black":

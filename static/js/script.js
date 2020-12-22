@@ -1,4 +1,4 @@
-const baseURL = "http://localhost:5000";
+const baseURL = "http://192.168.0.191:5000";
 const translate_callsign = {
     P: "pawn",
     N: "knight",
@@ -25,7 +25,7 @@ render_board = (piece_list) => {
         current_square.style = "background-image: none;";
     });
 
-    // render each piece at appropiate square
+    // render each piece at appropriate square
     piece_list.map(piece => {
         current_piece_square = document.querySelector(`#${piece[0]}`);
         current_piece_square.style = `background-image: url(static/images/${piece[2]}-${translate_callsign[piece[1]]}.png);`;
@@ -71,9 +71,9 @@ const mouse_up = (e) => {
                 }
                 // console.log(game_data);
                 render_board(game_data.piece_list);
-                if (!game_data.legal_move) {
-                    alert(`Sorry, ${square_from} to ${square_to} is not a legal move.`)
-                }
+                // if (!game_data.legal_move) {
+                //     alert(`Sorry, ${square_from} to ${square_to} is not a legal move.`)
+                // }
 
                 // is a player in check
                 if (game_data.white_is_in_check) {
