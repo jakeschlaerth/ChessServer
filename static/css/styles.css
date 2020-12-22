@@ -50,3 +50,14 @@
 * {
     font-family: Roboto;
 }
+
+.promotion-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2em;
+}
+
+.white-container {
+    display: none;
+}

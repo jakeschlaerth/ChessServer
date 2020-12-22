@@ -1,8 +1,7 @@
 <html>
 
 <head>
-    <link href="/static/css/styles.css"
-        rel="stylesheet">
+    <link href="/static/css/styles.css" rel="stylesheet">
     <title>Chess</title>
     <meta charset="UTF-8">
     <link
@@ -118,8 +117,22 @@
             </table>
         </div>
         <button class="reset-button">New Game</button>
+        <div class="promotion-container">
+            <div class="white-container">
+                <img src="/static/images/white-knight.png">
+                <img src="/static/images/white-bishop.png">
+                <img src="/static/images/white-rook.png">
+                <img src="/static/images/white-queen.png">
+            </div>
+            <div class="black-container">
+                <img src="/static/images/black-knight.png">
+                <img src="/static/images/black-bishop.png">
+                <img src="/static/images/black-rook.png">
+                <img src="/static/images/black-queen.png">
+            </div>
+        </div>
     </div>
-    
+
 </body>
 <script>
     init_piece_list = {{ piece_list | safe }};

@@ -1,4 +1,5 @@
-const baseURL = "http://192.168.0.191:5000";
+// const baseURL = "http://192.168.0.191:5000"; rpi
+const baseURL = "http://localhost:5000";    // local
 const translate_callsign = {
     P: "pawn",
     N: "knight",
@@ -38,18 +39,29 @@ var square_from;
 const mouse_down = (e) => {
     e.preventDefault;
     square_from = e.target.id;
+    var img = document.getElementById(`${square_from}`);
+    style = img.currentStyle || window.getComputedStyle(img, false);
+    bi = style.backgroundImage.slice(4, -1).replace(/"/g, "");
+    document.body.style.cursor = `url(${bi}) 30 30, auto`;
+    e.target.style.backgroundImage = "none";
 }
 
+
+const promotion = () => {
+    console.log("promotino func");
+    promotion_container = document.querySelector(".promotion-container");
+    knight = document.createElement("img");
+    knight.src = "static/images/white-knight.png";
+    promotion_container.appendChild(knight);
+
+
+}
 const mouse_up = (e) => {
     e.preventDefault;
+    document.body.style.cursor = "default";
     var selected_bool = false;
     var square_to = e.target.id;
-    if (square_from == square_to) {
-        console.log(square_from + " selected");
-        var selected_square = document.querySelector(`#${e.target.id}`);
-        selected_square.style.backgroundColor = "#fff799";
-        return;
-    }
+    
     var payload = {
         square_from: square_from,
         square_to: square_to
@@ -71,6 +83,18 @@ const mouse_up = (e) => {
                 }
                 // console.log(game_data);
                 render_board(game_data.piece_list);
+                var piece_to_move = game_data.piece_list.find(piece => 
+                    piece[0] == square_to);
+                
+                if (piece_to_move[1] == 'P' && piece_to_move[0][1] == 8) {
+                    promotion();
+                    // promote
+                    console.log("white promotion time!");
+                }
+
+                if (piece_to_move[1] == 'P' && piece_to_move[0][1] == 1) {
+                    console.log("black promotion time!")
+                }
                 // if (!game_data.legal_move) {
                 //     alert(`Sorry, ${square_from} to ${square_to} is not a legal move.`)
                 // }

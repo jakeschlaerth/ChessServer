@@ -7,7 +7,7 @@ from ChessRules import ChessGame, Piece, King, Queen, Rook, Bishop, Knight, Pawn
 from sunfish import *
 
 app = Flask(__name__, static_url_path="/static", static_folder="static")
-CORS(app, resources={r"/": {"origins": "http://localhost:5000"}})
+CORS(app) # rpi , resources={r"/": {"origins": "http://localhost:5000"}})
 
 game = ChessGame()
 
